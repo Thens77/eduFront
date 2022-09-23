@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ISalle, Salle } from '../salle.model';
 import { SalleService } from '../service/salle.service';
@@ -22,7 +22,7 @@ export class SalleUpdateComponent implements OnInit {
 
 
 
-  constructor(private salleService : SalleService , protected fb: FormBuilder , protected activatedRoute : ActivatedRoute) { }
+  constructor(private salleService : SalleService , protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id =this.activatedRoute.snapshot.params["id"];

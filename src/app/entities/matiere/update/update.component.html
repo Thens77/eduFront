@@ -1,0 +1,25 @@
+<p>update works!</p>
+<div class="container">
+    <div class="col-md-8 offset-md-2">
+      <form  name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+        <div class="form-group" [hidden]="matiere.id===undefined" >
+          <label>id </label>
+          <input type="text" class="form-control" id="id" name="id" [(ngModel)]="matiere.id" formControlName="id" readonly>
+        </div>
+        
+        <div class="form-group">
+          <label>nom </label>
+          <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="matiere.nom" formControlName="nom">
+        </div>
+  
+        <div class="form-group">
+          <label>libelle </label>
+          <input type="text" class="form-control" id="libelle" name="libelle" [(ngModel)]="matiere.libelle" formControlName="libelle">
+        </div>
+  
+      
+  
+        <button class="btn btn-info m-3" type="submit"> Enregistrer </button>
+      </form>
+    </div>
+</div>

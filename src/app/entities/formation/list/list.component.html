@@ -1,0 +1,50 @@
+<p>list works!</p>
+<div class="container">
+  
+    <div class="row">
+      <div class="col-12  text-end">
+        <button class="btn btn-success m-3 float-right" [routerLink]="['/ajouterFormation']" type="submit"> Ajouter </button>
+      </div>
+      </div>
+   
+  
+  </div>
+  
+  
+    
+  
+  
+  
+  <div class="form-group mb-2">
+      <input type="text" name="search" class="form-control" [(ngModel)]="searchText">     
+    </div> 
+    <table class="table">
+    <thead class="thead-dark">
+      <tr>
+            <th > id</th>    
+            <th > Nom</th>     
+            <th> actions  </th>
+          </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let formation of formations | filter: searchText">
+            <td >{{formation.id}}</td>
+            <td >{{formation.nom}}</td>
+    
+  
+            <td> <button type="submit" [routerLink]="['/formation', formation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              
+              <span class="d-none d-md-inline">View</span>
+            </button>
+  
+              <button type="submit" [routerLink]="['/formation', formation.id]" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+              <button type="submit" (click)="delete(formation.id)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+    </table>

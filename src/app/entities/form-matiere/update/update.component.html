@@ -1,0 +1,39 @@
+<p>update works!</p>
+<p>update works!</p>
+<div class="container">
+    <div class="col-md-8 offset-md-2">
+      <form  name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+        <div class="form-group" [hidden]="formMatiere.id===undefined" >
+          <label>id </label>
+          <input type="text" class="form-control" id="id" name="id" [(ngModel)]="formMatiere.id" formControlName="id" readonly>
+        </div>
+        
+        
+        
+                <mat-form-field appearance="fill" >
+                    <mat-label>Formation</mat-label>
+                    <mat-select class="form-control" id="formation" data-cy="formation" name="formation" formControlName="formation">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let formation of formations" [value]="formation">{{formation.nom}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+        
+  
+        <div class="row mb-3">
+            <label class="form-label" for="matiere">Matieres</label>
+            <ng-multiselect-dropdown
+                  [placeholder]="'Choisir les matieres de la formation'"
+                  [settings]="dropdownSettings"
+                  [data]='dropdownList'
+                 
+                  class="form-control" id="matiere" data-cy="matiere" name="matiere" formControlName="matiere"
+                >
+                </ng-multiselect-dropdown>
+          </div>
+  
+      
+  
+        <button class="btn btn-info m-3" type="submit"> Enregistrer </button>
+      </form>
+    </div>
+</div>

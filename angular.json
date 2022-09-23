@@ -103,5 +103,7 @@
       }
     }
   },
-  "defaultProject": "eduFront"
+  "cli": {
+    "analytics": false
+  }
 }
