@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 import { Matiere } from '../../matiere/matiere.model';
 import { MatiereService } from '../../matiere/service/matiere.service';
 import { Formation, IFormation } from '../formation.model';
@@ -13,7 +14,7 @@ import { FormationService } from '../service/formation.service';
 })
 export class FormationUpdateComponent implements OnInit {
 
- 
+  resetFormSubject: Subject<boolean> = new Subject<boolean>();
 
   matieres: Matiere[] = []
 
@@ -53,6 +54,7 @@ export class FormationUpdateComponent implements OnInit {
     if(this.editForm.get(['id'])!.value === undefined ) { 
       this.formationService.add(this.formation).subscribe(data =>{
         console.log(data);
+        this.notifyForChange();
       },
       error => console.log(error)
       );
@@ -60,14 +62,18 @@ export class FormationUpdateComponent implements OnInit {
    else{
     this.formationService.update(this.id,this.formation).subscribe(data =>{
       console.log(data);
+      this.notifyForChange();
     },
     error => console.log(error)
     )
    }
-
+   
    
   }
 
-  
+
+ notifyForChange() {
+  this.formationService.notifyAboutChange();
+}
 
 }

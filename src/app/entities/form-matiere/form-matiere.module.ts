@@ -6,6 +6,7 @@ import { ListComponent } from './list/list.component';
 
 
 
+
 @NgModule({
   declarations: [
     ListComponent,
@@ -13,6 +14,7 @@ import { ListComponent } from './list/list.component';
   ],
   imports: [
     CommonModule,
+    
    
     
   ]

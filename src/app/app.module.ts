@@ -20,10 +20,26 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { FormMatiereUpdateComponent } from './entities/form-matiere/update/update.component';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
+import { FormationDetailComponent } from './entities/formation/detail/detail.component';
+import { NavbarComponent, SignInDialog, SignUpDialog } from './layouts/navbar/navbar.component';
+import { SliderComponent } from './layouts/slider/slider.component';
+import { FooterComponent } from './layouts/footer/footer.component';
+import { MainComponent } from './layouts/main/main.component';
 
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
+    SliderComponent,
+    FooterComponent,
+    MainComponent,
+    SignInDialog,
+    SignUpDialog,
 
     SalleListComponent,
     SalleUpdateComponent ,
@@ -33,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
    
     FormationListComponent,
     FormationUpdateComponent,
+    FormationDetailComponent,
 
     FormMatiereUpdateComponent
   ],
@@ -46,8 +63,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     NgMultiSelectDropDownModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule,
    
+    MatToolbarModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule
 
     
   ],

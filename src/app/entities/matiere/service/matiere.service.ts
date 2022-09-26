@@ -15,6 +15,14 @@ export class MatiereService {
     return this.httpClient.get<Matiere[]>(`${this.baseURL}`);
   }
 
+  listForFormation(id:number):Observable<Matiere[]>{
+    return this.httpClient.get<Matiere[]>(`${this.baseURL}/form/${id}`);
+  }
+
+  notinlist(id:number):Observable<Matiere[]>{
+    return this.httpClient.get<Matiere[]>(`${this.baseURL}/nform/${id}`);
+  }
+
   add(matiere : Matiere) : Observable<Object> {
     return this.httpClient.post(`${this.baseURL}` , matiere);
   }

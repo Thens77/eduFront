@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormMatiereUpdateComponent } from './entities/form-matiere/update/update.component';
+import { FormationDetailComponent } from './entities/formation/detail/detail.component';
 import { FormationListComponent } from './entities/formation/list/list.component';
 import { FormationUpdateComponent } from './entities/formation/update/update.component';
 import { MatiereListComponent } from './entities/matiere/list/list.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:"ajouterMatiere" , component :  MatiereUpdateComponent } ,
 
   {path: 'formations', component: FormationListComponent},
-  {path: 'matieres/:id', component: FormationUpdateComponent},
+  {path: 'formation/:id/view', component: FormationDetailComponent},
+  {path: 'formation/:id', component: FormationUpdateComponent},
   {path:"ajouterFormation" , component :  FormationUpdateComponent} ,
 
   {path:"formatieres" , component :  FormMatiereUpdateComponent} ,
