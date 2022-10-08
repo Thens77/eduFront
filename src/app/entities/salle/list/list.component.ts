@@ -3,7 +3,7 @@ import { Salle } from '../salle.model';
 import { SalleService } from '../service/salle.service';
 
 @Component({
-  selector: 'app-list',
+  selector: 'salle-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })

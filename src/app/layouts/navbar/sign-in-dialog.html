@@ -22,16 +22,30 @@
                 </a>
                 <h4>Login</h4>
                 <p>Don't have an account? Create your account. It's take less then a minutes</p>
-                <form class="s12">
+
+                <form class="s12" name="editForm" [formGroup]="editForm"  *ngIf="!isLoggedIn"
+                name="form"
+                (ngSubmit)="f.form.valid && doLogin()"
+                #f="ngForm"
+                novalidate>
+                    <div class="form-group">
+                        <div
+                          class="alert alert-danger"
+                          role="alert"
+                          *ngIf="f.submitted && isLoginFailed"
+                        >
+                           {{ errorMessage }}
+                        </div>
+                      </div>
                     <div>
                         <div class="input-field s12">
-                            <input type="text" matInput class="validate">
+                            <input type="text" matInput  formControlName="username" class="validate">
                             <label>User name</label>
                         </div>
                     </div>
                     <div>
                         <div class="input-field s12">
-                            <input type="password"  matInput  class="validate">
+                            <input type="password"  formControlName="password" matInput  class="validate">
                             <label>Password</label>
                         </div>
                     </div>
@@ -45,7 +59,9 @@
                     </div>
                     <div>
                         <div class="input-field s4">
-                            <i class="waves-effect waves-light log-in-btn waves-input-wrapper"><input type="submit" value="Login" class="waves-button-input"></i> </div>
+                            <i class="waves-effect waves-light log-in-btn waves-input-wrapper"><button class="btn btn-primary btn-block">
+                                Login
+                              </button></i> </div>
                     </div>
                     <div>
                         <div class="input-field s12"> <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modal3">Forgot password</a> | <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#modal2">Create a new account</a> </div>

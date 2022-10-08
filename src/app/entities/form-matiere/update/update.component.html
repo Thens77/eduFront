@@ -1,32 +1,49 @@
-<div class="container">
-<mat-card class="m-4">
-  <mat-card-title>Affectation des matieres a des formations
-  </mat-card-title>
-  <mat-card-subtitle>Choisir d'abord la formation</mat-card-subtitle>
- 
-    <form  name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <div class="form-group" [hidden]="formMatiere.id===undefined" >
-        <label>id </label>
-        <input type="text" class="form-control" id="id" name="id" [(ngModel)]="formMatiere.id" formControlName="id" readonly>
+
+      <div class="inn-title">
+          <h4>Affecter une matiere a une formation</h4>
+          <p>Airtport Hotels The Right Way To Start A Short Break Holiday</p>
       </div>
-      
-      <div class="form-group"  >
-              <mat-form-field appearance="fill" >
-                  <mat-label>Formation</mat-label>
-                  <mat-select 
-                     [compareWith]="compareObjects"
-                     [(value)]="sFormation" class="form-control" 
-                     id="formation" 
-                     data-cy="formation" 
-                     name="formation" 
-                     formControlName="formation" 
-                     (selectionChange)="onChange($event)">
-                  <mat-option>None</mat-option>
-                  <mat-option selected="sFormation.id===formation.id" *ngFor="let formation of formations" [value]="formation">{{formation.nom}} </mat-option>
-                  </mat-select>
-              </mat-form-field>
-      </div>
-      <div class="form-group" >
+      <div class="bor">
+          <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <div class="row">
+              <div class="input-field col s12"  [hidden]="formMatiere.id===undefined" >
+                <div class="form-group"  >
+                  
+                  <input  type="text" class="form-control" id="id" name="id" [(ngModel)]="formMatiere.id" formControlName="id" readonly>
+                  <label *ngIf="formMatiere.id===undefined" for="id" class="">Id</label>
+                </div>
+
+              </div>
+                
+              </div>
+              <div class="row">
+                 
+                  <div class="input-field col s12">
+                    <div class="form-group"  >
+                      <mat-form-field appearance="fill" >
+
+                          <mat-label>Formation</mat-label>
+                          <mat-select 
+                         
+                          [disabled]="idf!==undefined"
+                             [compareWith]="compareObjects"
+                             [(value)]="sFormation" class="form-control" 
+                             id="formation" 
+                             data-cy="formation" 
+                             name="formation" 
+                             formControlName="formation" 
+                             (selectionChange)="onChange($event)"
+                             >
+                          <mat-option>None</mat-option>
+                          <mat-option selected="sFormation.id===formation.id" *ngFor="let formation of formations" [value]="formation">{{formation.nom}} </mat-option>
+                          </mat-select>
+                      </mat-form-field>
+              </div>
+                     </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                  <div class="form-group" >
           <label class="form-label" for="matiere">Matieres</label>
           <ng-multiselect-dropdown
                 [(ngModel)]="selectedItemsRoot"
@@ -38,7 +55,14 @@
               >
               </ng-multiselect-dropdown>
         </div>
-      <button class="btn btn-info m-3" type="submit"> Enregistrer </button>
-    </form>
-</mat-card>
-</div>
+                  </div>
+              </div>
+                 
+              <div class="row">
+                  <div class="input-field col s12">
+                      <i class="waves-effect waves-light btn-large waves-input-wrapper" ><input type="submit" class="waves-button-input" value="Submit"></i>
+                  </div>
+              </div>
+          </form>
+      </div>
+  

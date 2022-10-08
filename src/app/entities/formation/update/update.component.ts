@@ -1,11 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Matiere } from '../../matiere/matiere.model';
 import { MatiereService } from '../../matiere/service/matiere.service';
 import { Formation, IFormation } from '../formation.model';
 import { FormationService } from '../service/formation.service';
+@Component({
+  selector: 'dialog-elements-example-dialog',
+  templateUrl: 'succes-alert-dialog.html',
+})
+export class SuccessAlertDialog {
+  constructor(public dialogRef: MatDialogRef<SuccessAlertDialog>) {
+
+  }
+
+  closeDialog() {
+    //Write your stuff here
+    this.dialogRef.close(); // <- Closes the dialog
+  }
+}
 
 @Component({
   selector: 'app-update',
@@ -23,11 +38,12 @@ export class FormationUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     nom: [],
+    description:[],
     matieres: [],
    
   });
 
-  constructor(private matiereService : MatiereService, private formationService : FormationService , protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
+  constructor(public dialog: MatDialog,private matiereService : MatiereService, private formationService : FormationService , protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
    
@@ -43,6 +59,7 @@ export class FormationUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: formation.id,
       nom: formation.nom,
+      description : formation.description ,
       matieres: formation.matieres,
       
       
@@ -55,6 +72,7 @@ export class FormationUpdateComponent implements OnInit {
       this.formationService.add(this.formation).subscribe(data =>{
         console.log(data);
         this.notifyForChange();
+        this.openDialog('500ms', '500ms');
       },
       error => console.log(error)
       );
@@ -63,6 +81,7 @@ export class FormationUpdateComponent implements OnInit {
     this.formationService.update(this.id,this.formation).subscribe(data =>{
       console.log(data);
       this.notifyForChange();
+      this.openDialog('500ms', '500ms');
     },
     error => console.log(error)
     )
@@ -70,7 +89,17 @@ export class FormationUpdateComponent implements OnInit {
    
    
   }
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    let dialogRef = this.dialog.open(SuccessAlertDialog, {
+      width: '500px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
 
  notifyForChange() {
   this.formationService.notifyAboutChange();

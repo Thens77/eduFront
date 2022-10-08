@@ -45,10 +45,7 @@
 /*-------------------------------------------------*/
 /* =  1.All Pages Common CSS Styles
 /*-------------------------------------------------*/
- body{
-     font-family: 'Open Sans', sans-serif;
-     padding-right: 0px !important;
-}
+ 
  a{
      -webkit-transition: all 0.5s ease;
      -moz-transition: all 0.5s ease;
@@ -1585,14 +1582,15 @@
  .sf-submit{
      float: left;
      width: 25%;
+     font-size: 11px;
 }
  .sf-submit input{
      width: 100%;
      border: 0px;
      color: #fff;
-     font-weight: 600;
+     font-weight: 1000;
      text-transform: uppercase;
-     padding: 13px;
+     padding: 15px;
      border: 1px solid #e25f30;
      border-top-right-radius: 2px;
      border-bottom-right-radius: 2px;
@@ -4398,7 +4396,7 @@ left: 0;
     display: block;
     border: 1px solid #ccc;
     border-radius: 4px;
-    height: 200px;
+    height: 100px;
 }
 .sa-blog {} .sa-blog-post {
     position: relative;
@@ -5031,6 +5029,7 @@ left: 0;
     box-shadow: 0 0 0 1px #3d793f;
     text-align: center;
 }
+
 .top-user-pro {
     padding: 18px 20px;
     color: #fff;

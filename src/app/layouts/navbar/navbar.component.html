@@ -84,10 +84,19 @@
                   <div class="ed-com-t1-right">
                   
                       <ul>
-                          <li><a href="#!" data-toggle="modal" data-target="#modal1"  (click)="openSignInDialog()"> Sign In</a>
+                        <div *ngIf="token===null;then content else other_content"></div>
+                        <ng-template #content>
+                            <li><a href="#!"  data-toggle="modal" data-target="#modal1"  (click)="openSignInDialog()"> Sign In</a>
                           </li>
-                          <li><a href="#!" data-toggle="modal" data-target="#modal2"  (click)="openSignUpDialog()" >Sign Up</a>
-                          </li>
+                          <li><a href="#!"  data-toggle="modal" data-target="#modal2"  (click)="openSignUpDialog()" >Sign Up</a>
+                        </li>
+                        </ng-template>
+                          
+                       <ng-template #other_content>
+                        <li><a href="#!"   (click)="loginSerive.logout()"> Log out</a>
+                        </li>
+                       </ng-template>
+                        
                       </ul>
                   </div>
                   <div class="ed-com-t1-social">

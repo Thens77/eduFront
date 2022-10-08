@@ -23,6 +23,8 @@ export class FormationDetailComponent implements OnInit {
   @Input() 
   idf? : number | undefined ;
 
+  
+
   notifierSubscription: Subscription = this.formMatiereService.subjectNotifier.subscribe(notified => {
     this.ngOnInit();
   });
@@ -69,4 +71,8 @@ export class FormationDetailComponent implements OnInit {
   notifyForChange() {
     this.formMatiereService.notifyAboutChange();
   }
+
+  ngOnChanges() {
+   this.ngOnInit();
+    }   
 }

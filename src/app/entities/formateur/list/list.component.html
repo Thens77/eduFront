@@ -1,0 +1,67 @@
+
+          <!--== User Details ==-->
+          <div class="sb2-2-3">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="box-inn-sp">
+                          <div class="inn-title">
+                              <h4>Formateur Details</h4>
+                              <p>All about formateurs, program structure, fees, best course lists (ranking), syllabus, teaching techniques and other details.</p>
+                          </div>
+                          <div class="tab-inn">
+                            <div class="form-group mb-2">
+                              <input type="text" name="search" class="form-control" [(ngModel)]="searchText">     
+                            </div>  
+                            <div class="table-responsive table-desi">
+                                  <table class="table table-hover">
+                                      <thead>
+                                          <tr>
+                                              <th>Image</th>
+                                              <th > id</th>    
+          <th > userName</th>    
+          <th > password</th>    
+          <th > nom</th>    
+          <th > prenom</th>  
+          <th > age</th>  
+          <th > email</th>  
+          <th > cin</th> 
+          <th > salaire</th> 
+          <th > dernier Paiement</th> 
+
+                    
+                    <th>View</th>
+                    <th>Delete</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr *ngFor="let formateur of formateurs | filter: searchText">
+                                          <td>
+                                            <img [src]="formateur.picByte">
+                                        </td>
+                                         <td >{{formateur.id}}</td>
+                                         <td >{{formateur.userName}}</td>
+                                         <td >{{formateur.password}}</td>
+                                         <td >{{formateur.nom}}</td>
+                                         <td >{{formateur.prenom}}</td>
+                                         <td >{{formateur.age}}</td>
+                                         <td >{{formateur.email}}</td>
+                                         <td >{{formateur.cin}}</td>
+                                         <td >{{formateur.salaire}}</td>
+                                         <td >{{formateur.dernierPaiement}}</td>
+                                      <tbody>
+                                       
+                   <td><a [routerLink]="['/dashboard/formateur', formateur.id]" class="ad-st-view">Edit</a></td>
+                   <button type="submit" (click)="delete(formateur.id)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <span class="d-none d-md-inline">Delete</span>
+              </button>
+                                        </tr>
+                                        
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+ 

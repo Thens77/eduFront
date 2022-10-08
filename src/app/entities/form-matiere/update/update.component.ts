@@ -20,6 +20,10 @@ import { FormMatiereService } from '../service/form-matiere.service';
 
 export class FormMatiereUpdateComponent implements OnInit {
   resetFormSubject: Subject<boolean> = new Subject<boolean>();
+
+
+
+
   sFormation: Formation = new Formation();
 
 
@@ -46,7 +50,7 @@ export class FormMatiereUpdateComponent implements OnInit {
 
   });
 
-
+  
 
 
   formations : Formation[] | undefined;
@@ -79,8 +83,10 @@ export class FormMatiereUpdateComponent implements OnInit {
 
 }
   onChange(e? : MatSelectChange):void {
-    
+    console.log(e?.value.id)
+    this.idf=e?.value.id;
     this.getMatiere(e?.value.id);
+   
   }
 
   getMatiere(id? : number):void{

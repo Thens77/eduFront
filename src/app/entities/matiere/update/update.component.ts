@@ -1,8 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IMatiere, Matiere } from '../matiere.model';
 import { MatiereService } from '../service/matiere.service';
+import { Location } from '@angular/common';
+@Component({
+  selector: 'dialog-elements-example-dialog',
+  templateUrl: 'succes-alert-dialog.html',
+})
+export class SuccessAlertDialog {
+  constructor(public dialogRef: MatDialogRef<SuccessAlertDialog>) {
+
+  }
+
+  closeDialog() {
+    //Write your stuff here
+    this.dialogRef.close(); // <- Closes the dialog
+  }
+}
+
 
 @Component({
   selector: 'app-update',
@@ -16,10 +33,11 @@ export class MatiereUpdateComponent implements OnInit {
     id: [],
     nom: [],
     libelle: [],
+    description:[],
    
   });
 
-  constructor(private matiereService : MatiereService , protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
+  constructor(private router :Router ,private location : Location ,public dialog: MatDialog , private matiereService : MatiereService , protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
     this.id =this.activatedRoute.snapshot.params["id"];
@@ -33,7 +51,7 @@ export class MatiereUpdateComponent implements OnInit {
       id: matiere.id,
       nom: matiere.nom,
       libelle: matiere.libelle,
-      
+      description : matiere.description
       
     });
   }
@@ -42,6 +60,7 @@ export class MatiereUpdateComponent implements OnInit {
     console.log(this.matiere.nom);
     if(this.editForm.get(['id'])!.value === undefined ) { 
       this.matiereService.add(this.matiere).subscribe(data =>{
+        this.openDialog('500ms', '500ms');
         console.log(data);
       },
       error => console.log(error)
@@ -50,6 +69,7 @@ export class MatiereUpdateComponent implements OnInit {
    else{
     this.matiereService.update(this.id,this.matiere).subscribe(data =>{
       console.log(data);
+      this.openDialog('500ms', '500ms');
     },
     error => console.log(error)
     )
@@ -57,4 +77,17 @@ export class MatiereUpdateComponent implements OnInit {
 
    
   }
-}
+ 
+    openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+      let dialogRef = this.dialog.open(SuccessAlertDialog, {
+        width: '500px',
+        enterAnimationDuration,
+        exitAnimationDuration,
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.router.navigate(['dashboard/matieres']);
+      });
+    }
+  }
+

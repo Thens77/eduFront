@@ -8,4 +8,16 @@
     padding: 0px;
     background-color: transparent;
 }
-    
+
+body{
+     font-family: 'Open Sans', sans-serif;
+     padding-right: 0px !important;
+     
+}
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+ 
+

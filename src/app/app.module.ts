@@ -10,6 +10,8 @@ import { SalleListComponent } from './entities/salle/list/list.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import {NgxWebstorageModule} from 'ngx-webstorage';
+
 import { HttpClientModule } from '@angular/common/http';
 import { SalleUpdateComponent } from './entities/salle/update/update.component';
 import { FormationListComponent } from './entities/formation/list/list.component';
@@ -31,6 +33,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
+import { HomeComponent } from './home/home/home.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth/auth.guard';
+import { DashboardComponent } from './layouts/dashboard/dashboard.component';
+import { DashhomeComponent } from './layouts/dashboard/dashhome/dashhome.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { MatiereDetailComponent } from './entities/matiere/detail/detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,17 +50,23 @@ import {MatInputModule} from '@angular/material/input';
     SignInDialog,
     SignUpDialog,
 
+    HomeComponent,
+
     SalleListComponent,
     SalleUpdateComponent ,
 
     MatiereListComponent,
     MatiereUpdateComponent,
-   
+    MatiereDetailComponent,
+
     FormationListComponent,
     FormationUpdateComponent,
     FormationDetailComponent,
 
-    FormMatiereUpdateComponent
+    FormMatiereUpdateComponent,
+     HomeComponent,
+     DashboardComponent,
+     DashhomeComponent
   ],
   imports: [
     BrowserModule,
@@ -69,11 +84,16 @@ import {MatInputModule} from '@angular/material/input';
     MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    NgxWebstorageModule.forRoot()
 
     
   ],
-  providers: [],
+  providers: [AuthGuard,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
