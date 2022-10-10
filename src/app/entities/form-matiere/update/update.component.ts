@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, UntypedFormBuilder, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
@@ -55,7 +56,7 @@ export class FormMatiereUpdateComponent implements OnInit {
 
   formations : Formation[] | undefined;
   selectedItemsRoot: any[] | undefined;
-  constructor(private formMatiereService: FormMatiereService ,private matiereService : MatiereService, private formationService : FormationService , protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
+  constructor(public dialog: MatDialog ,private formMatiereService: FormMatiereService ,private matiereService : MatiereService, private formationService : FormationService , protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
     this.selectedItemsRoot = [];
@@ -136,7 +137,10 @@ export class FormMatiereUpdateComponent implements OnInit {
           },
           error => console.log(error)
           );
+
+          
         }
+        this.openDialog('500ms', '500ms');
   }
    else{
     this.formMatiereService.update(this.id,this.formMatiere).subscribe(data =>{
@@ -169,5 +173,33 @@ export class FormMatiereUpdateComponent implements OnInit {
   notifyForChange() {
     this.formMatiereService.notifyAboutChange();
   }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    let dialogRef = this.dialog.open(SuccessAlertDialog, {
+      width: '500px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
 }
 
+
+
+@Component({
+  selector: 'dialog-elements-example-dialog',
+  templateUrl: 'succes-alert-dialog.html',
+})
+export class SuccessAlertDialog {
+  constructor(public dialogRef: MatDialogRef<SuccessAlertDialog>) {
+
+  }
+
+  closeDialog() {
+    //Write your stuff here
+    this.dialogRef.close(); // <- Closes the dialog
+  }
+}

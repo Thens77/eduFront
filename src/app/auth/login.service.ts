@@ -40,6 +40,7 @@ export class LoginService {
         this._isLoggedIn$.next(true);
         localStorage.setItem('token', data.accessToken);
         localStorage.setItem('userName', data.userName);
+        localStorage.setItem('userId', data.userId);
         localStorage.setItem('role', data.role);
         console.log(data)
       

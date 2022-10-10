@@ -40,6 +40,8 @@ import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 import { DashhomeComponent } from './layouts/dashboard/dashhome/dashhome.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { MatiereDetailComponent } from './entities/matiere/detail/detail.component';
+import { RevueListComponent } from './entities/revue/list/list.component';
+import { RevueUpdateComponent } from './entities/revue/update/update.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +66,11 @@ import { MatiereDetailComponent } from './entities/matiere/detail/detail.compone
     FormationDetailComponent,
 
     FormMatiereUpdateComponent,
+
+    RevueListComponent,
+    RevueUpdateComponent,
+
+    
      HomeComponent,
      DashboardComponent,
      DashhomeComponent
