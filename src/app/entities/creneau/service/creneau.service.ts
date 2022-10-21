@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { Salle } from '../../salle/salle.model';
 import { Creneau } from '../creneau.model';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Creneau } from '../creneau.model';
 })
 export class CreneauService {
 
-  private baseURL = "http://localhost:2125/creneau"
+  private baseURL = "http://localhost:4900/creneau"
   constructor(private httpClient : HttpClient) { }
 
   list():Observable<Creneau[]>{
@@ -17,6 +18,10 @@ export class CreneauService {
 
   add(creneau : Creneau) : Observable<Object> {
     return this.httpClient.post(`${this.baseURL}` , creneau);
+  }
+
+  dispo(s? : Salle , d? : Date ) : Observable<any> {
+    return this.httpClient.post(`${this.baseURL}/dispo` , {s,d} );
   }
 
   get(id:number):Observable<Creneau>{

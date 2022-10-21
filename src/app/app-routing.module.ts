@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { CreneauListComponent } from './entities/creneau/list/list.component';
+import { CreneauUpdateComponent } from './entities/creneau/update/update.component';
 
 import { FormMatiereUpdateComponent } from './entities/form-matiere/update/update.component';
 import { FormationDetailComponent } from './entities/formation/detail/detail.component';
@@ -9,6 +11,9 @@ import { FormationUpdateComponent } from './entities/formation/update/update.com
 import { MatiereDetailComponent } from './entities/matiere/detail/detail.component';
 import { MatiereListComponent } from './entities/matiere/list/list.component';
 import { MatiereUpdateComponent } from './entities/matiere/update/update.component';
+import { ReservationListComponent } from './entities/reservation/list/list.component';
+import { ReservationUpdateComponent } from './entities/reservation/update/update.component';
+import { SalleReservationListComponent } from './entities/salle-reservation/list/list.component';
 import { SalleListComponent } from './entities/salle/list/list.component';
 import { SalleUpdateComponent } from './entities/salle/update/update.component';
 import { HomeComponent } from './home/home/home.component';
@@ -68,6 +73,26 @@ const routes: Routes = [
     {
       path: 'salle/:id',
       component: SalleUpdateComponent,
+    },
+    {
+      path: 'reservations',
+      component: ReservationListComponent,
+    },
+    {
+      path: 'ajouterReservation',
+      component: ReservationUpdateComponent,
+    },
+    {
+      path: 'creneaux',
+      component: CreneauListComponent,
+    },
+    {
+      path: 'sallesreservation',
+      component: SalleReservationListComponent,
+    },
+    {
+      path: 'ajouterCreneau',
+      component: CreneauUpdateComponent,
     }
   ]
 },

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FullCalendarModule } from '@fullcalendar/angular';  
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -20,19 +20,21 @@ import { MatiereUpdateComponent } from './entities/matiere/update/update.compone
 import { FormationUpdateComponent } from './entities/formation/update/update.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { FormMatiereUpdateComponent } from './entities/form-matiere/update/update.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule} from '@angular/material/card';
 import { FormationDetailComponent } from './entities/formation/detail/detail.component';
 import { NavbarComponent, SignInDialog, SignUpDialog } from './layouts/navbar/navbar.component';
 import { SliderComponent } from './layouts/slider/slider.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { MainComponent } from './layouts/main/main.component';
 
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatInputModule} from '@angular/material/input';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule} from '@angular/material/button';
+import { MatDialogModule} from '@angular/material/dialog';
+import { MatInputModule} from '@angular/material/input';
 import { HomeComponent } from './home/home/home.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth/auth.guard';
@@ -42,9 +44,38 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { MatiereDetailComponent } from './entities/matiere/detail/detail.component';
 import { RevueListComponent } from './entities/revue/list/list.component';
 import { RevueUpdateComponent } from './entities/revue/update/update.component';
+import { ReservationListComponent } from './entities/reservation/list/list.component';
+import { ReservationUpdateComponent } from './entities/reservation/update/update.component';
+import { CreneauListComponent } from './entities/creneau/list/list.component';
+import { CreneauUpdateComponent } from './entities/creneau/update/update.component';
+import { TimePickerComponent } from './layouts/time-picker/time-picker.component';
+import { Calendar } from '@fullcalendar/core'
+
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import { SalleReservationListComponent } from './entities/salle-reservation/list/list.component';
+
+
+FullCalendarModule.registerPlugins([ 
+  interactionPlugin,
+  dayGridPlugin,
+  resourceTimelinePlugin,
+  timeGridPlugin,
+  listPlugin
+]);
+
+
+
+
+
 @NgModule({
+  
   declarations: [
     AppComponent,
+    TimePickerComponent,
     NavbarComponent,
     SliderComponent,
     FooterComponent,
@@ -70,13 +101,24 @@ import { RevueUpdateComponent } from './entities/revue/update/update.component';
     RevueListComponent,
     RevueUpdateComponent,
 
+
+    ReservationListComponent,
+    ReservationUpdateComponent,
+
+    CreneauListComponent,
+    CreneauUpdateComponent,
+
+    SalleReservationListComponent,
     
      HomeComponent,
      DashboardComponent,
      DashhomeComponent
   ],
   imports: [
+    FullCalendarModule,
     BrowserModule,
+   
+    
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -87,13 +129,16 @@ import { RevueUpdateComponent } from './entities/revue/update/update.component';
     MatSelectModule,
     BrowserAnimationsModule,
     MatCardModule,
-   
+    NgxMaterialTimepickerModule,
     MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
 
+
+    
+  
     
   ],
   providers: [AuthGuard,{

@@ -15,7 +15,7 @@ export class CreneauUpdateComponent implements OnInit {
    
 
   creneau: Creneau = new Creneau();
-  id!: number;
+  id!: number | undefined;
   editForm = this.fb.group({
     id: [],
     heureDebut: [],
@@ -26,8 +26,9 @@ export class CreneauUpdateComponent implements OnInit {
   constructor(private creneauService : CreneauService ,private router : Router, protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
+    
     this.id =this.activatedRoute.snapshot.params["id"];
-    this.creneauService.get(this.id).subscribe( data => {
+    this.creneauService.get(this.id!).subscribe( data => {
       this.creneau = data ;
     }, error => console.log(error))
   
@@ -38,30 +39,31 @@ export class CreneauUpdateComponent implements OnInit {
       id: creneau.id,
       heureDebut : creneau.heureDebut,
       heureFin: creneau.heureFin,
-     
-      
-      
     });
   }
   time: NgbTimeStruct = {hour: 13, minute: 30, second: 30};
   seconds = true;
   save():void{
-    
+    this.creneau.heureDebut =  `${this.creneau.heureDebut}:00`
+    this.creneau.heureFin =  `${this.creneau.heureFin}:00`
     console.log("amm "+this.creneau.heureDebut);
     
-
+   // this.editForm.reset();
     console.log(this.creneau.heureFin);
     if(this.editForm.get(['id'])!.value === undefined ) { 
       this.creneauService.add(this.creneau).subscribe(data =>{
         console.log(data);
-        this.router.navigate(['/dashboard/creneau'])
-
+        //this.router.navigate(['/dashboard/creneau'])
+        console.log("done")
+        this.editForm.reset();
+        this.editForm.get(['id'])!.setValue(undefined);
+        this.creneau.id = undefined ; 
       },
       error => console.log(error)
       );
     }
    else{
-    this.creneauService.update(this.id,this.creneau).subscribe(data =>{
+    this.creneauService.update(this.id!,this.creneau).subscribe(data =>{
       console.log(data);
       this.router.navigate(['/dashboard/creneau'])
 
@@ -69,7 +71,6 @@ export class CreneauUpdateComponent implements OnInit {
     error => console.log(error)
     )
    }
-
    
   }
 }

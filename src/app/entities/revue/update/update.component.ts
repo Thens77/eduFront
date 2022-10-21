@@ -37,9 +37,7 @@ export class RevueUpdateComponent implements OnInit {
   ngOnInit(): void {
     console.log(localStorage.getItem('userId'));
     this.getUser();
-   
     this.getMatiere();
-  
   }
 
   protected updateForm(revue: IRevue): void {
@@ -51,19 +49,16 @@ export class RevueUpdateComponent implements OnInit {
       
     });
   }
+
   save():void{
-
-    
     const revue = this.createFromForm();
-  
-     
-
       this.revueService.add(revue).subscribe(data =>{
         this.notifyForChange();
-      },
+       },
       error => console.log(error)
       );
   }
+
   notifyForChange() {
     this.revueService.notifyAboutChange();
   }
