@@ -2493,8 +2493,8 @@
  .log-in-pop-left {
     /*margin-top: 10px;*/
      float: left;
-     width: 40%;
-     height: 100%;
+     width: 30%;
+     height: 200px;
      background: url('../images/login.html') #002147 no-repeat center center;
      padding: 12.5% 6%;
      color: #fff;
